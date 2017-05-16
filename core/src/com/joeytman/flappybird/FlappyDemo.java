@@ -3,10 +3,9 @@ package com.joeytman.flappybird;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.joeytman.flappybird.States.GameStateManager;
-import com.joeytman.flappybird.States.MenuState;
+import com.joeytman.flappybird.states.GameStateManager;
+import com.joeytman.flappybird.states.MenuState;
 
 public class FlappyDemo extends ApplicationAdapter {
 	public static final int WIDTH = 480;

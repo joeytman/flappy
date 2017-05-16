@@ -1,4 +1,4 @@
-package com.joeytman.flappybird.States;
+package com.joeytman.flappybird.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
