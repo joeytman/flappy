@@ -23,7 +23,6 @@ public class MenuState extends State {
     public void handleInput() {
         if (Gdx.input.justTouched()) {
             gsm.set(new PlayState(gsm));
-            dispose();
         }
     }
 
@@ -35,10 +34,8 @@ public class MenuState extends State {
     @Override
     public void render(SpriteBatch sb) {
         sb.begin();
-        sb.draw(background, 0, 0, 0, 200, FlappyDemo.WIDTH, FlappyDemo.HEIGHT);
-        int menuBtnHeight = FlappyDemo.HEIGHT / 11;
-        int menuBtnWidth = FlappyDemo.WIDTH / 4;
-        sb.draw(playBtn, (FlappyDemo.WIDTH / 2) - (menuBtnWidth / 2), (FlappyDemo.HEIGHT / 2) - (menuBtnHeight / 2), menuBtnWidth, menuBtnHeight);
+        sb.draw(background, 0, 0, FlappyDemo.WIDTH, FlappyDemo.HEIGHT);
+        sb.draw(playBtn, (FlappyDemo.WIDTH / 2) - (playBtn.getWidth() / 2), (FlappyDemo.HEIGHT / 2) - (playBtn.getHeight() / 2));
         sb.end();
     }
 
@@ -46,6 +43,7 @@ public class MenuState extends State {
     public void dispose() {
         background.dispose();
         playBtn.dispose();
+        System.out.println("Menu State Disposed.");
     }
 
 }

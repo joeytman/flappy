@@ -8,8 +8,8 @@ import com.joeytman.flappybird.states.GameStateManager;
 import com.joeytman.flappybird.states.MenuState;
 
 public class FlappyDemo extends ApplicationAdapter {
-	public static final int WIDTH = 480;
-	public static final int HEIGHT = 800;
+	public static final int WIDTH = 1920;
+	public static final int HEIGHT = 1080;
 	public static final String TITLE = "Flappy Demo";
 	private GameStateManager gsm;
 	private SpriteBatch batch;
