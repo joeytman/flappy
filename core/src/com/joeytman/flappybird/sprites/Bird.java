@@ -1,6 +1,7 @@
 package com.joeytman.flappybird.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -11,21 +12,27 @@ import com.badlogic.gdx.math.Vector3;
 public class Bird {
     private static final int G = -15;
     private static final int MOVEMENT = 200;
+    private Vector3 lastPosition;
     private Vector3 position;
     private Vector3 velocity;
+    private Texture texture;
+
+    private Animation birdAnimation;
 
     private Rectangle bounds;
 
-    private Texture bird;
-
     public Bird(int x, int y) {
         position = new Vector3(x, y, 0);
+        lastPosition = new Vector3(position);
         velocity = new Vector3(0, 0, 0);
-        bird = new Texture("birdmid.png");
-        bounds = new Rectangle(x, y, bird.getWidth(), bird.getHeight());
+        texture = new Texture("hugBatchSmall.png");
+        birdAnimation = new Animation(new TextureRegion(texture), 5, 0.5f);
+        bounds = new Rectangle(x, y, texture.getWidth() / 5, texture.getHeight());
     }
 
     public void update(float dt) {
+        lastPosition = new Vector3(position);
+        birdAnimation.update(dt);
         if (position.y > 0) {
             velocity.add(0, G, 0);
         }
@@ -38,13 +45,15 @@ public class Bird {
         bounds.setPosition(position.x, position.y);
     }
 
-
+    public Vector3 getLastPosition() {
+        return lastPosition;
+    }
     public Vector3 getPosition() {
         return position;
     }
 
-    public Texture getTexture() {
-        return bird;
+    public TextureRegion getTexture() {
+        return birdAnimation.getFrame();
     }
 
     public void jump() {
@@ -56,6 +65,9 @@ public class Bird {
     }
 
     public void dispose() {
-        bird.dispose();
+        texture.dispose();
+        birdAnimation.dispose();
     }
+
+
 }

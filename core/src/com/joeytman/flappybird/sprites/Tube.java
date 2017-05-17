@@ -1,8 +1,13 @@
 package com.joeytman.flappybird.sprites;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+
 import java.util.Random;
 
 /**
@@ -18,16 +23,25 @@ public class Tube {
     private Vector2 posTopTube, posBotTube;
     private Rectangle boundsTop, boundsBot;
     private Random rand;
+    public BitmapFont font;
+    public int num;
 
     public Tube(float x) {
         rand = new Random();
-        topTube = new Texture("topTube.png");
-        bottomTube = new Texture("botTube.png");
+        topTube = new Texture("topTubeRed.png");
+        bottomTube = new Texture("botTubeBlue.png");
         posTopTube = new Vector2(x, rand.nextInt(FLUCT) + TUBE_GAP + LOWEST_OPENING);
         posBotTube = new Vector2(x, posTopTube.y - TUBE_GAP - bottomTube.getHeight());
 
         boundsTop = new Rectangle(posTopTube.x, posTopTube.y, topTube.getWidth(), topTube.getHeight());
         boundsBot = new Rectangle(posBotTube.x, posBotTube.y, bottomTube.getWidth(), bottomTube.getHeight());
+
+    }
+
+    public Tube(float x, int num) {
+        this(x);
+        this.num = num;
+        font = new BitmapFont();
     }
 
     public Texture getTopTube() {
@@ -50,7 +64,7 @@ public class Tube {
         posTopTube.set(x, rand.nextInt(FLUCT) + TUBE_GAP + LOWEST_OPENING);
         posBotTube.set(x, posTopTube.y - TUBE_GAP - bottomTube.getHeight());
         boundsTop.setPosition(posTopTube.x, posTopTube.y);
-        boundsBot.setPosition(posBotTube.x, posTopTube.y);
+        boundsBot.setPosition(posBotTube.x, posBotTube.y);
     }
 
     public boolean collides(Rectangle player) {
@@ -62,5 +76,6 @@ public class Tube {
         boundsTop = null;
         topTube.dispose();
         bottomTube.dispose();
+        font.dispose();
     }
 }
